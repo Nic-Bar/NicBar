@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db-migrate-dev": "npx prisma migrate dev --skip-generate"
   },
   "dependencies": {
     "next": "12.2.5",
+    "prisma": "^4.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
