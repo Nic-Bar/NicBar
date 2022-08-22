@@ -94,6 +94,8 @@ model Recipe_Ingredient {
 
   inventoryItemId Int           @unique
   ingredient      InventoryItem @relation(fields: [inventoryItemId], references: [id])
+
+  amount   Int 
 }
 
 enum UserType {
