@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model InventoryItem {
+  id Int @id @default(autoincrement())
+
+  consumable        Consumable?
+  Recipe_Ingredient Recipe_Ingredient?
+
+  name              String
+  alcoholPercentage Float
+  allergens         String[]
+  pricePerUnit      Float
+  unitsAvailable    Int
+  isOnMenu          Boolean @default(false)
+}
+
+model Consumable {
+  id Int @id @default(autoincrement())
+
+  billItem BillItem[]
+
+  inventoryItemId Int?           @unique
+  inventoryItem   InventoryItem? @relation(fields: [inventoryItemId], references: [id])
+  recipeId        Int?           @unique
+  recipe          Recipe?        @relation(fields: [recipeId], references: [id])
+
+  price Float
+}
+
+model Recipe {
+  id Int @id @default(autoincrement())
+
+  name              String
+  consumable        Consumable?
+  Recipe_Ingredient Recipe_Ingredient?
+
+  alcoholPercentage Float
+}
+
+model Bill {
+  id String @id @default(uuid())
+
+  userId Int  @unique
+  user   User @relation(fields: [userId], references: [id])
+
+  isPaid   Boolean  @default(false)
+  issuedAt DateTime @default(now())
+  paidAt   DateTime
+
+  items BillItem[]
+}
+
+model BillItem {
+  id Int @id @default(autoincrement())
+
+  billId       String     @unique
+  bill         Bill       @relation(fields: [billId], references: [id])
+  consumableId Int        @unique
+  consumable   Consumable @relation(fields: [consumableId], references: [id])
+
+  quantity Int      @default(1)
+  extras   String[]
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  firstname String
+  lastname  String
+  email     String
+  type      UserType
+  balance   Int
+  paymentid String
+  password  String
+
+  bills Bill[]
+}
+
+model Recipe_Ingredient {
+  id Int @id @default(autoincrement())
+
+  recipeId Int    @unique
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+
+  inventoryItemId Int           @unique
+  ingredient      InventoryItem @relation(fields: [inventoryItemId], references: [id])
+
+  amount   Int 
+}
+
+enum UserType {
+  ADMIN
+  VIP
+  BARTENDER
+  USER
+}
