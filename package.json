@@ -10,6 +10,8 @@
     "db-migrate-dev": "npx prisma migrate dev --skip-generate"
   },
   "dependencies": {
+    "@prisma/client": "^4.2.1",
+    "http-status-codes": "^2.2.0",
     "next": "12.2.5",
     "prisma": "^4.2.1",
     "react": "18.2.0",
