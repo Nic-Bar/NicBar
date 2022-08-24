@@ -1,4 +1,4 @@
-# Bar Planning Tool für Nicos Kellerbar
+# Bar Planning Tool für NicBar
 
 Developed by
  - [Manuel](https://github.com/ManuelPuchner)
