@@ -19,7 +19,8 @@ export default function handler(
       handleGet(req, res);
       break;
     case "POST":
-      
+      handlePost(req, res);
+      break;
     default:
       res.status(StatusCodes.METHOD_NOT_ALLOWED).end();
   }
@@ -42,12 +43,33 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse<Consumable>)
     res.status(StatusCodes.BAD_REQUEST)
   }
 
+  let data;
+  if(consumable.inventoryItemId === null || consumable.inventoryItemId === undefined){
+    data = {
+      recipe: {
+        connect: {
+          id: consumable.recipeId
+        }
+      },
+      price: consumable.price
+    }
+  }
+  else{
+    data = {
+      inventoryItem: {
+        connect: {
+          id: consumable.inventoryItemId
+        }
+      },
+      price: consumable.price
+    }
+  }
   console.log(consumable);
   
 
   let createdConsumeable = await prisma.consumable.create({
-    data: consumable
-  });
+    data: data
+  })
   res.status(StatusCodes.CREATED).json(createdConsumeable);
 }
 

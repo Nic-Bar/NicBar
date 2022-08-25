@@ -1,3 +1,5 @@
+import Header from "../header/Header"
+
 type MainLayoutProps = {
   children: React.ReactNode;
 }
@@ -5,7 +7,7 @@ type MainLayoutProps = {
 function MainLayout({ children }: MainLayoutProps) {
   return (
     <div className="main-layout">
-      {/* TODO: header */}
+      <Header></Header>
       <main>{children}</main>
       {/* TODO: footer */}
     </div>
