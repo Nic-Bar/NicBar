@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db-migrate-dev": "npx prisma migrate dev --skip-generate"
+    "db-migrate-dev": "npx prisma migrate dev"
   },
   "dependencies": {
     "@prisma/client": "^4.2.1",
