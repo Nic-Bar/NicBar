@@ -2,11 +2,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Prisma } from "@prisma/client";
 import { prisma } from "db";
 import { StatusCodes } from "http-status-codes";
+import type { Bill } from "utils/types";
 
 type Error = {
     error: string
 }
-type Bill = Prisma.PromiseReturnType<typeof prisma.bill.create>
 type BillItem = Prisma.PromiseReturnType<typeof prisma.billItem.create>
 type DataGet = Bill[];
 type DataPost = Bill | Error;
