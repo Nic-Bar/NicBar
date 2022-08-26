@@ -43,7 +43,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse<DataGet>) {
 }
 
 function validateInventoryItem(inventoryItem: any) {
-  const {id, name, alcoholPercentage, allergens, pricePerUnit, unitsAvailable, isOnMenu} = inventoryItem;
+  const {name, alcoholPercentage, allergens, pricePerUnit, unitsAvailable} = inventoryItem;
 
   if(name === undefined || name === null || name === "" 
     || alcoholPercentage === undefined || alcoholPercentage === null || alcoholPercentage === ""
@@ -52,6 +52,14 @@ function validateInventoryItem(inventoryItem: any) {
     || unitsAvailable === undefined || unitsAvailable === null || unitsAvailable === "") {
     return false;
   }
+
+  //TODO: test validation
+
+  if(name !== "string" 
+    || alcoholPercentage !== "number"
+    || allergens !== "string"
+    || pricePerUnit !== "number"
+    || unitsAvailable !== "number")
 
   return true;
 }
