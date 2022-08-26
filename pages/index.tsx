@@ -1,6 +1,8 @@
 import type { NextPage } from 'next'
+import { useQuery } from 'react-query'
 
 const Home: NextPage = () => {
+
   return (
     <div className="">
       <div className="flex">

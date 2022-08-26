@@ -1,9 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Prisma } from "@prisma/client";
 import { prisma } from "db";
 import { StatusCodes } from "http-status-codes";
 
-type Consumable = Prisma.PromiseReturnType<typeof prisma.consumable.create>;
+import type { Consumable } from "utils/types";
 
 type DataGet = Consumable[];
 type DataPost = Consumable;
