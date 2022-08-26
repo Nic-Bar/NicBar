@@ -7,6 +7,7 @@ type Error = {
     error: string
 }
 type Bill = Prisma.PromiseReturnType<typeof prisma.bill.create>
+type BillItem = Prisma.PromiseReturnType<typeof prisma.billItem.create>
 type DataGet = Bill[];
 type DataPost = Bill | Error;
 
@@ -36,14 +37,52 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse) {
 async function handlePost(req: NextApiRequest, res: NextApiResponse) {
     let bill = req.body
     //TODO: validation
-
+    if(!valdiateBill(bill)){
+        res.status(StatusCodes.BAD_REQUEST).json({error: "Invalid bill"})
+    }
     console.log(bill);
 
     let createdBill = await prisma.bill.create({
-        data: bill
-    })
+        data: {
+            user: {
+                connect: bill.userId
+            },
+            isPaid: bill.isPaid,
+            issuedAt: bill.issuedAt,
+            paidAt: bill.paidAt,
+            items:{
+                createMany: {
+                    data: bill.items
+                }
+            }
+
+        }
+    });
+
+    res.status(StatusCodes.OK).json(createdBill);
 }
 
-// function valdiateBill(bill: any): boolean{
-//     const {userId, } = bill
-// }
+function valdiateBill(bill: any): boolean{
+
+    const {userId, isPaid, issuedAt, paidAt, items} = bill
+
+    if(userId === null || userId === undefined
+        || isPaid === null ||isPaid === undefined
+        || issuedAt === null || issuedAt === undefined
+        || paidAt === null || paidAt === undefined
+        || items === null || items === undefined
+    ){
+        return false;
+    }
+
+    if(typeof userId !== "number"
+        || typeof isPaid !== "boolean"
+        || typeof issuedAt !== "string"
+        || typeof paidAt !== "string"
+    ){
+        return false;
+    }
+
+    return true;
+}
+
