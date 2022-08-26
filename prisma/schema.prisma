@@ -104,6 +104,7 @@ enum Unit {
   SLICE
   TSBP
   TSP
+  DASH
 }
 
 enum UserType {
