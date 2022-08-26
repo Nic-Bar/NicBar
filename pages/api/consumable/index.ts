@@ -35,7 +35,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse<DataGet>) {
   res.status(StatusCodes.OK).json(consumables);
 }
 
-async function handlePost(req: NextApiRequest, res: NextApiResponse<Consumable>){
+async function handlePost(req: NextApiRequest, res: NextApiResponse<DataPost>){
   let consumable = req.body;
 
   //TODO: validation of Consumeable
