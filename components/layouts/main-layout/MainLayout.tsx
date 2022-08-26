@@ -8,9 +8,9 @@ type MainLayoutProps = {
 
 function MainLayout({ children }: MainLayoutProps) {
   return (
-    <div className="main-layout">
+    <div className="main-layout bg-almostBlack text-white flex flex-col h-screen justify-between">
       <Header></Header>
-      <main>{children}</main>
+      <main className="mb-auto h-10">{children}</main>
       <Footer></Footer>
     </div>
   );

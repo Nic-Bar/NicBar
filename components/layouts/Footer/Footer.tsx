@@ -1,9 +1,9 @@
 function Footer() {
     return (
-        <footer>
-            <h1 className="bg-grey text-white text-3xl">NicBar - Footer</h1>
-        </footer>
-    )
+      <footer className="h-10 bg-darkBlue">
+        <h1 className="text-white text-3xl">NicBar - Footer</h1>
+      </footer>
+    );
 }
 
 export default Footer
