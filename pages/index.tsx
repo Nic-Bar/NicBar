@@ -8,7 +8,7 @@ const Home: NextPage = () => {
           <h1 className='font-bold text-6xl'>Die wahrscheinlich coolste Kellerbar in Linz</h1>
         </div>
         <div>
-
+        <a href="./newPage/abc.jsx">animation</a>
         </div>
       </div>
     </div>
