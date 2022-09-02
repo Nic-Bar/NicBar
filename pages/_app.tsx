@@ -3,9 +3,9 @@ import "tailwindcss/tailwind.css";
 import type { AppProps } from 'next/app'
 import MainLayout from '../components/layouts/main-layout/MainLayout';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   return (
-    <MainLayout>
+    <MainLayout framerKey={router.route}>
       <Component {...pageProps} />
     </MainLayout>
   );
