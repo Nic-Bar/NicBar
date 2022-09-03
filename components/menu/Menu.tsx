@@ -38,7 +38,7 @@ function Menu() {
         <div>
           <div className="flex justify-center">
           <motion.div 
-            className="bg-darkBlue rounded-full h-36 w-36 z-20  " 
+            className="bg-darkBlue rounded-full h-36 w-36 z-20 translate-y-20" 
             animate={{
             }}
             onTap={toggleMenu}
@@ -46,7 +46,7 @@ function Menu() {
           </motion.div>
           </div>
           <motion.div 
-            className="bg-darkBlue rounded-full z-10 top-1" 
+            className="bg-darkBlue z-10 top-1" 
             animate={{
               height: isMenuOpened ? height-50 : 50,
               width: width,
