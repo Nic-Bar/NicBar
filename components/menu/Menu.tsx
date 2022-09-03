@@ -21,18 +21,22 @@ function Menu() {
     }
     
   }, [])
-  
+
   return (
-    <div className="min-h-full min-w-full flex justify-center relative" >
+    <div className=" fixed bottom-0 z-20 " >
+      <div className="flex justify-center w-screen">
         <motion.div 
-          className="h-36 w-36 bg-darkBlue rounded-full m-6" 
+          className="bg-darkBlue rounded-full m-6" 
+          animate={{
+            height: isMenuOpened ? 200 : 50,
+            width: isMenuOpened ? 200 : 150,
+          }}
           onTap={toggleMenu}
         >
-          {
-            isMenuOpened && "menu opened"
-          }
+          
         </motion.div>
-      
+        
+        </div>
       </div>
   )
 }
