@@ -3,6 +3,13 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 
+let width = 0, height = 0;
+
+if (typeof window !== "undefined") {
+  width = window.innerWidth;
+  height = window.innerHeight;
+}
+
 function Menu() {
   const router = useRouter();
   const [isMenuOpened, setIsMenuOpened] = useState(false)
@@ -22,22 +29,35 @@ function Menu() {
     
   }, [])
 
+  console.log(width);
+  
+
   return (
-    <div className=" fixed bottom-0 z-20 " >
-      <div className="flex justify-center w-screen">
-        <motion.div 
-          className="bg-darkBlue rounded-full m-6" 
-          animate={{
-            height: isMenuOpened ? 200 : 50,
-            width: isMenuOpened ? 200 : 150,
-          }}
-          onTap={toggleMenu}
-        >
-          
-        </motion.div>
-        
+    <div className=" fixed -bottom-2" >
+      <div className="flex justify-center w-screen ">
+        <div>
+          <div className="flex justify-center">
+          <motion.div 
+            className="bg-darkBlue rounded-full h-36 w-36 z-20  " 
+            animate={{
+            }}
+            onTap={toggleMenu}
+          >          
+          </motion.div>
+          </div>
+          <motion.div 
+            className="bg-darkBlue rounded-full z-10 top-1" 
+            animate={{
+              height: isMenuOpened ? height-50 : 50,
+              width: width,
+              borderRadius: 10
+            }}
+          >
+            
+          </motion.div>
         </div>
       </div>
+    </div>
   )
 }
 
