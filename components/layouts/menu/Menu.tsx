@@ -1,4 +1,4 @@
-import {  motion, useTime, useTransform, useMotionValue} from "framer-motion"
+import {  motion } from "framer-motion"
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
@@ -38,9 +38,11 @@ function Menu() {
         <div>
           <div className="flex justify-center">
           <motion.div 
-            className="bg-darkBlue rounded-full h-36 w-36 z-20 translate-y-20" 
-            animate={{
-            }}
+            className="rounded-full h-36 w-36 z-20 translate-y-20" 
+            animate={
+              {background:isMenuOpened ? "#f2695c" : "#3e4759"}
+            }
+            
             onTap={toggleMenu}
           >          
           </motion.div>
@@ -48,7 +50,7 @@ function Menu() {
           <motion.div 
             className="bg-darkBlue z-10 top-1" 
             animate={{
-              height: isMenuOpened ? height-50 : 50,
+              height: isMenuOpened ? height-90 : 50,
               width: width,
               borderRadius: 10
             }}

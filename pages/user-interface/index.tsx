@@ -1,4 +1,4 @@
-import Menu from "components/menu/Menu"
+import Menu from "components/layouts/menu/Menu"
 
 function abc() {
 
