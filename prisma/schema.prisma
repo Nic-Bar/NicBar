@@ -34,7 +34,9 @@ model Consumable {
   recipeId        Int?           @unique
   recipe          Recipe?        @relation(fields: [recipeId], references: [id])
 
-  price Float
+  price           Float
+  pic             String
+  creds           String
 }
 
 model Recipe {
