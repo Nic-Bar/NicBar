@@ -10,8 +10,24 @@ module.exports = {
         darkBlue: "#3e4759",
         mediumBlue: "#6c7a8c",
         lightBlue: "#949ba6",
-        salmon: "f2695c",
+        salmon: "#f2695c",
         almostBlack: "#0d0d0d",
+      },
+      screens: {
+        'sm': '640px',
+        // => @media (min-width: 640px) { ... }
+  
+        'md': '768px',
+        // => @media (min-width: 768px) { ... }
+  
+        'lg': '1024px',
+        // => @media (min-width: 1024px) { ... }
+  
+        'xl': '1280px',
+        // => @media (min-width: 1280px) { ... }
+  
+        '2xl': '1536px',
+        // => @media (min-width: 1536px) { ... }
       },
     },
   },
