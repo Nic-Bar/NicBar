@@ -1,4 +1,6 @@
 import type { NextPage } from 'next'
+import Link from "next/link"
+
 
 const Home: NextPage = () => {
   return (
@@ -8,7 +10,7 @@ const Home: NextPage = () => {
           <h1 className='font-bold text-6xl'>Die wahrscheinlich coolste Kellerbar in Linz</h1>
         </div>
         <div>
-
+        <Link href="/user-interface/"><a>App</a></Link>
         </div>
       </div>
     </div>
