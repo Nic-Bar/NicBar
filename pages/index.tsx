@@ -1,12 +1,9 @@
 import type { NextPage } from 'next'
 import { useQuery } from 'react-query'
+import Link from "next/link"
 
-async function fetchConsumables() {
-  const res = await fetch("/api/consumable")
-  return res.json()
-}
+
 const Home: NextPage = () => {
-  const { data, isLoading } = useQuery('users', fetchConsumables);
 
   return (
     <div className="">
@@ -18,6 +15,9 @@ const Home: NextPage = () => {
         </div>
         <div>
           <div>{!isLoading && <pre>{JSON.stringify(data, null, 2)}</pre>}</div>
+          <Link href="/user-interface/">
+            <a>App</a>
+          </Link>
         </div>
       </div>
     </div>
