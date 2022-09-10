@@ -47,21 +47,25 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse<DataPost>){
     data = {
       recipe: {
         connect: {
-          id: consumable.recipeId
-        }
+          id: consumable.recipeId,
+        },
       },
-      price: consumable.price
-    }
+      price: consumable.price,
+      pic: "",
+      creds: "",
+    };
   }
   else{
     data = {
       inventoryItem: {
         connect: {
-          id: consumable.inventoryItemId
-        }
+          id: consumable.inventoryItemId,
+        },
       },
-      price: consumable.price
-    }
+      price: consumable.price,
+      pic: "",
+      creds: "",
+    };
   }
   console.log(consumable);
   
