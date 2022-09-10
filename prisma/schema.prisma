@@ -98,6 +98,15 @@ model Recipe_Ingredient {
   ingredient      InventoryItem @relation(fields: [inventoryItemId], references: [id])
 
   amount   Int 
+  unit     Unit
+}
+
+enum Unit {
+  ML
+  SLICE
+  TSBP
+  TSP
+  DASH
 }
 
 enum UserType {

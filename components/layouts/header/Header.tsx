@@ -9,7 +9,7 @@ function Header() {
           </a>
         </Link>
     </header>
-  )
+  );
 }
 
 export default Header
