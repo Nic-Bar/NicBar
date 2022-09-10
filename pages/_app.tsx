@@ -6,11 +6,11 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { useState } from "react";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   const [queryClient] = useState(new QueryClient());
   return (
     <QueryClientProvider client={queryClient}>
-      <MainLayout>
+      <MainLayout framerKey={router.route}>
         <Component {...pageProps} />
       </MainLayout>
       <ReactQueryDevtools initialIsOpen={false} />
