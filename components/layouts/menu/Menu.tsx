@@ -32,12 +32,14 @@ function Menu() {
       animate={{
         top: !isMenuOpened ? "90vh" : "7rem",
       }}
+      initial={{
+        top: "90vh",
+      }}
     >
       <div className="flex justify-center w-screen ">
         <div>
           <div
             className="bg-darkBlue z-40 h-screen w-screen rounded-md absolute left-0"
-            
           >
             <div className="flex justify-center">
               <motion.div
