@@ -2,12 +2,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "db";
 import { StatusCodes } from "http-status-codes";
 
-import type { Consumable } from "utils/types";
+import type { Consumable } from "@prisma/client";
 
 type DataGet = Consumable[];
 type DataPost = Consumable;
 type Data = DataGet | DataPost;
-
 
 export default function handler(
   req: NextApiRequest,
@@ -29,21 +28,24 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse<DataGet>) {
   let consumables = await prisma.consumable.findMany({
     include: {
       inventoryItem: true,
-    }
+    },
   });
   res.status(StatusCodes.OK).json(consumables);
 }
 
-async function handlePost(req: NextApiRequest, res: NextApiResponse<DataPost>){
+async function handlePost(req: NextApiRequest, res: NextApiResponse<DataPost>) {
   let consumable = req.body;
 
   //TODO: validation of Consumeable
-  if(!validateConsumbale(consumable)){
-    res.status(StatusCodes.BAD_REQUEST)
+  if (!validateConsumbale(consumable)) {
+    res.status(StatusCodes.BAD_REQUEST);
   }
 
   let data;
-  if(consumable.inventoryItemId === null || consumable.inventoryItemId === undefined){
+  if (
+    consumable.inventoryItemId === null ||
+    consumable.inventoryItemId === undefined
+  ) {
     data = {
       recipe: {
         connect: {
@@ -54,8 +56,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse<DataPost>){
       pic: "",
       creds: "",
     };
-  }
-  else{
+  } else {
     data = {
       inventoryItem: {
         connect: {
@@ -68,22 +69,27 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse<DataPost>){
     };
   }
   console.log(consumable);
-  
 
   let createdConsumeable = await prisma.consumable.create({
-    data: data
-  })
+    data: data,
+  });
   res.status(StatusCodes.CREATED).json(createdConsumeable);
 }
 
-function validateConsumbale(consumable: any){
-  const {inventoryItemId, recipeId, price} = consumable;
+function validateConsumbale(consumable: any) {
+  const { inventoryItemId, recipeId, price } = consumable;
 
-  if(((inventoryItemId === undefined || inventoryItemId === null) && (recipeId === null || recipeId === undefined) ||
-      (inventoryItemId !== undefined && inventoryItemId !== null) && (recipeId !== null && recipeId !== undefined) ||
-      price <= 0)){
-        return false;
-      }
+  if (
+    ((inventoryItemId === undefined || inventoryItemId === null) &&
+      (recipeId === null || recipeId === undefined)) ||
+    (inventoryItemId !== undefined &&
+      inventoryItemId !== null &&
+      recipeId !== null &&
+      recipeId !== undefined) ||
+    price <= 0
+  ) {
+    return false;
+  }
 
   return true;
 }
