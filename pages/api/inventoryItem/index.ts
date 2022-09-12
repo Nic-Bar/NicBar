@@ -59,7 +59,10 @@ function validateInventoryItem(inventoryItem: any) {
     || alcoholPercentage !== "number"
     || allergens !== "string"
     || pricePerUnit !== "number"
-    || unitsAvailable !== "number")
+    || unitsAvailable !== "number"){
+    return false;
+    }
+    
 
   return true;
 }
