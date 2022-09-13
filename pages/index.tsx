@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import { useQuery } from 'react-query'
 import Link from "next/link"
+import ConsumeCard from 'components/layouts/ConsumeCard/ConsumeCard'
 
 
 const Home: NextPage = () => {
@@ -15,6 +16,7 @@ const Home: NextPage = () => {
         <Link href="/user-interface/"><a>App</a></Link>
         </div>
       </div>
+      <ConsumeCard consumable={null}></ConsumeCard>
     </div>
   )
 }
