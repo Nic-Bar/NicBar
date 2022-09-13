@@ -1,12 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Prisma } from "@prisma/client";
 import { prisma } from "db";
 import { StatusCodes } from "http-status-codes";
+import type { InventoryItem } from "utils/types";
 
 type Error = {
   error: string;
 };
-type InventoryItem = Prisma.PromiseReturnType<typeof prisma.inventoryItem.create>;
+
 type DataGet = InventoryItem[];
 type DataPost = InventoryItem | Error;
 

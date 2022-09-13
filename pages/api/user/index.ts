@@ -1,13 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Prisma } from "@prisma/client";
 import { prisma } from "db";
 import { StatusCodes } from "http-status-codes";
-
+import type { User } from "@prisma/client";
 type Error = {
     error: string;
 };
-
-type User = Prisma.PromiseReturnType<typeof prisma.user.create>
 type DataGet = User[];
 type DataPost = User | Error;
 
