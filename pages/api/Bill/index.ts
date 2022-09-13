@@ -2,12 +2,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Prisma } from "@prisma/client";
 import { prisma } from "db";
 import { StatusCodes } from "http-status-codes";
-import type { Bill } from "@prisma/client";
+import type { Bill, BillItem } from "@prisma/client";
 
 type Error = {
   error: string;
 };
-type BillItem = Prisma.PromiseReturnType<typeof prisma.billItem.create>;
 type DataGet = Bill[];
 type DataPost = Bill | Error;
 
@@ -49,7 +48,9 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
   let createdBill = await prisma.bill.create({
     data: {
       user: {
-        connect: bill.userId,
+        connect: {
+          id: bill.userId,
+        }
       },
       isPaid: bill.isPaid,
       issuedAt: bill.issuedAt,

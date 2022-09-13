@@ -26,7 +26,11 @@ export default function handler(
 }
 
 async function handleGet(req: NextApiRequest, res: NextApiResponse<DataGet>) {
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+        include: {
+            bills: true
+        }
+    });
     res.status(StatusCodes.OK).json(users);
 }
 
@@ -37,11 +41,14 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse<DataPost>) {
         return;
     }
 
-    console.log(user);
+    let userCopy = {...user};
+    if(userCopy.bills) {
+        delete userCopy.bills;
+    }
     
 
     let createdUser = await prisma.user.create({
-        data: user
+        data: userCopy
     });
     
 

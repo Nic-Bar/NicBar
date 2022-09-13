@@ -37,7 +37,6 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse<DataPost>) {
     return;
   }
 
-  console.log(inventoryItem);
 
   let createdInventoryItem = await prisma.inventoryItem.create({
     data: inventoryItem,
@@ -55,35 +54,31 @@ function validateInventoryItem(inventoryItem: any) {
   const { name, alcoholPercentage, allergens, pricePerUnit, unitsAvailable } =
     inventoryItem;
 
+    console.log(inventoryItem);
   if (
     name === undefined ||
     name === null ||
     name === "" ||
     alcoholPercentage === undefined ||
     alcoholPercentage === null ||
-    alcoholPercentage === "" ||
     allergens === undefined ||
     allergens === null ||
-    allergens === "" ||
     pricePerUnit === undefined ||
     pricePerUnit === null ||
-    pricePerUnit === "" ||
     unitsAvailable === undefined ||
-    unitsAvailable === null ||
-    unitsAvailable === ""
+    unitsAvailable === null
   ) {
     return false;
   }
 
   //TODO: test validation
-
-  if(name !== "string" 
-    || alcoholPercentage !== "number"
-    || allergens !== "string"
-    || pricePerUnit !== "number"
-    || unitsAvailable !== "number"){
+  
+  if(typeof name !== "string" 
+    || typeof alcoholPercentage !== "number"
+    || typeof pricePerUnit !== "number"
+    || typeof unitsAvailable !== "number"){
     return false;
-    }
+  }
     
 
   return true;

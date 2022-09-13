@@ -42,6 +42,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse<DataPost>) {
   }
 
   let data;
+  console.log(data)
   if (
     consumable.inventoryItemId === null ||
     consumable.inventoryItemId === undefined
@@ -53,8 +54,8 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse<DataPost>) {
         },
       },
       price: consumable.price,
-      pic: "",
-      creds: "",
+      pic: consumable.pic,
+      creds: consumable.creds,
     };
   } else {
     data = {
