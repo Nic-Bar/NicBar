@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  basePath: "/nic-bar"
 }
 
 module.exports = nextConfig
