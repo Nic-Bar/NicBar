@@ -7,4 +7,4 @@ Developed by
 
 ---
 
-use ``pnpm db-migrate-dev`` to migrate the database
+use ``npm db-migrate-dev`` to migrate the database
