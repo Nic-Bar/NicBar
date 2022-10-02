@@ -1,4 +1,4 @@
-# Bar Planning Tool für NicBar
+# Bar Planning Tool for your home-bar
 
 Developed by
  - [Manuel](https://github.com/ManuelPuchner)
